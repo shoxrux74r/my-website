@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мои ссылки</title>
+  <style>
+/* ================= CSS ================= */
+:root{
+  --blur:14px; --radius:22px;
+  --bg-dark: linear-gradient(135deg,#c6d4da,#655ebb,#2c5364);
+  --bg-light: linear-gradient(135deg,#f2f2f2,#e6e6e6);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; display:grid; place-items:center;
+  background:var(--bg-dark);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:#fff; transition:.3s;
+}
+body.light{background:var(--bg-light); color:#000}
+
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+@media(max-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.cards{grid-template-columns:1fr}}
+
+.card{
+  position:relative; overflow:hidden;
+  text-decoration:none; color:inherit;
+  padding:18px 14px; border-radius:24px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  transition:.2s;
+}
+body.light .card{background:rgba(0,0,0,.05)}
+.card:hover{transform:translateY(-6px)}
+
+.card::before{
+  content:""; position:absolute; inset:0; border-radius:24px; padding:1px;
+  background:radial-gradient(180px circle at var(--x,50%) var(--y,50%), rgba(255,255,255,1), rgba(255,255,255,.6) 30%, transparent 65%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:0; pointer-events:none; transition:opacity .15s ease
+}
+.card:hover::before{opacity:1}
+
+.card-icon{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18)}
+.card-title{font-weight:700}
+.card-desc{font-size:13px;opacity:.85;text-align:center}
+svg{width:26px;height:26px;fill:currentColor}
+
+.theme-toggle{
+  position:fixed; top:20px; right:20px;
+  width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center; cursor:pointer;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(10px);
+  font-size:20px;
+  transition:transform .4s ease, background .4s ease
+}
+body.light .theme-toggle{background:rgba(0,0,0,.15)}
+.theme-toggle.spin{transform:rotate(360deg)}
+</style>
+</head>
+<body>
+  <div class="theme-toggle" id="themeToggle">🌙</div>
+<div class="wrap cards">
+
+    <a class="card yt" href="https://youtube.com" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6.1 3.5-6.1 3.5Z"/></svg>
+      </div>
+      <div class="card-title">YouTube</div>
+      <div class="card-desc">Подписаться на канал</div>
+    </a>
+
+    <a class="card tg" href="https://t.me/" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M9.9 15.4 9.7 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.8c.7.4 1.2.2 1.4-.6l2.5-11.8c.2-1-.4-1.4-1.1-1.1L3.5 9.8c-1 .4-1 1 .2 1.4l4 1.2L17 6.9c.4-.2.8-.1.5.2"/></svg>
+      </div>
+      <div class="card-title">Telegram канал</div>
+      <div class="card-desc">Подписаться</div>
+    </a>
+
+    <a class="card tg" href="https://t.me/username" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M9.9 15.4 9.7 19c.4 0 .6-.2.8-.4l1.9-1.8 3.9 2.8c.7.4 1.2.2 1.4-.6l2.5-11.8c.2-1-.4-1.4-1.1-1.1L3.5 9.8c-1 .4-1 1 .2 1.4l4 1.2L17 6.9c.4-.2.8-.1.5.2"/></svg>
+      </div>
+      <div class="card-title">Telegram</div>
+      <div class="card-desc">Написать мне</div>
+    </a>
+
+      
+    <a class="card ig" href="https://instagram.com" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zm-5 3.2A4.8 4.8 0 1 0 16.8 12 4.8 4.8 0 0 0 12 7.2zm0 7.9A3.1 3.1 0 1 1 15.1 12 3.1 3.1 0 0 1 12 15.1zM17.5 6.5a1 1 0 1 0 1 1 1 1 0 0 0-1-1z"/></svg>
+      </div>
+      <div class="card-title">Instagram</div>
+      <div class="card-desc">Написать в директ</div>
+    </a>
+
+    <a class="card gh" href="https://github.com" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 .5A12 12 0 0 0 8.2 23.4c.6.1.8-.2.8-.5v-2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.9 1.3 3.6 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 2 1.2 3.3 0 4.4-2.7 5.4-5.3 5.7.4.3.8 1 .8 2v3c0 .3.2.6.8.5A12 12 0 0 0 12 .5z"/></svg>
+      </div>
+      <div class="card-title">GitHub</div>
+      <div class="card-desc">Мои проекты</div>
+    </a>
+
+    <a class="card pt" href="https://pinterest.com" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.5 19.4c-.1-.8-.2-2 .1-2.9l1.3-5.6s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.7 1.3 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.6 2 1.6 2 1.9 0 3.3-2 3.3-4.9 0-2.6-1.9-4.4-4.5-4.4-3.1 0-4.9 2.3-4.9 4.7 0 .9.3 1.9.8 2.4.1.1.1.2.1.3l-.3 1.2c-.1.2-.2.3-.4.2-1.5-.7-2.4-2.9-2.4-4.7 0-3.8 2.8-7.3 8-7.3 4.2 0 7.4 3 7.4 7 0 4.2-2.6 7.6-6.3 7.6-1.2 0-2.4-.6-2.8-1.4l-.7 2.7c-.3 1-.9 2.2-1.3 3A10 10 0 0 0 12 2"/></svg>
+      </div>
+      <div class="card-title">Pinterest</div>
+      <div class="card-desc">Посмотреть идеи</div>
+    </a>
+
+    <a class="card fb" href="https://facebook.com" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.8V12h2.6V9.8c0-2.6 1.6-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12"/></svg>
+      </div>
+      <div class="card-title">Facebook</div>
+      <div class="card-desc">Добавить в друзья</div>
+    </a>
+
+      <a class="card" href="mailto:test@gmail.com">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div class="card-title">Gmail</div>
+      <div class="card-desc">Написать письмо</div>
+    </a>
+
+    <a class="card" href="https://wa.me/123456789" target="_blank">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M16.6 14.2c-.3-.1-1.9-.9-2.2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1c-.3-.1-1.3-.5-2.5-1.6-.9-.8-1.6-1.9-1.8-2.2s0-.5.1-.7.3-.4.4-.6.2-.3.3-.5.1-.4 0-.6-.7-1.6-1-2.2c-.3-.6-.6-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.7 1.2 3.1 1.4 3.3c.2.2 2.4 3.7 5.9 5.2.8.3 1.5.5 2 .6.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5s-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.7 15l-1.3 5 5.1-1.3A10 10 0 1 0 12 2z"/></svg>
+      </div>
+      <div class="card-title">WhatsApp</div>
+      <div class="card-desc">Написать сообщение</div>
+    </a>
+
+  </div>
+
+<script>
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--x', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    });
+  });
+/* ================= JS ================= */
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--x',e.clientX-r.left+'px');
+    card.style.setProperty('--y',e.clientY-r.top+'px');
+  });
+});
+
+const t=document.getElementById('themeToggle');
+t.onclick=()=>{
+  t.classList.add('spin');
+  document.body.classList.toggle('light');
+  t.textContent=document.body.classList.contains('light')?'☀️':'🌙';
+  setTimeout(()=>t.classList.remove('spin'),400);
+};
+  t.textContent=document.body.classList.contains('light')?'☀️':'🌙';
+;
+</script>
+</body>
+</html>
