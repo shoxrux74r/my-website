@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мои ссылки</title>
+  
+
   <style>
 /* ================= CSS ================= */
 :root{
   --blur:14px; --radius:22px;
-  --bg-dark: linear-gradient(135deg,#c6d4da,#655ebb,#2c5364);
-  --bg-light: linear-gradient(135deg,#f2f2f2,#e6e6e6);
+  --bg-dark: linear-gradient(135deg,#a1a1a2ed,#626267db,#383838f4);
+  --bg-light: linear-gradient(135deg,#fcf8f8ce,#e6e6e629);
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -19,7 +21,7 @@ body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   color:#fff; transition:.3s;
 }
-body.light{background:var(--bg-light); color:#000}
+body.light{background:var(--bg-light); color:#100562}
 
 .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
 @media(max-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
@@ -29,20 +31,20 @@ body.light{background:var(--bg-light); color:#000}
   position:relative; overflow:hidden;
   text-decoration:none; color:inherit;
   padding:18px 14px; border-radius:24px;
-  background:rgba(255,255,255,.08);
+  background:rgba(164, 13, 13, 0);
   backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  border:1px solid rgba(255, 255, 255, 0.334);
+  box-shadow:0 10px 30px rgba(111, 108, 108, 0.541);
   display:flex; flex-direction:column; align-items:center; gap:10px;
   transition:.2s;
 }
-body.light .card{background:rgba(0,0,0,.05)}
+body.light .card{background:rgba(85, 83, 83, 0.342)}
 .card:hover{transform:translateY(-6px)}
 
 .card::before{
   content:""; position:absolute; inset:0; border-radius:24px; padding:1px;
-  background:radial-gradient(180px circle at var(--x,50%) var(--y,50%), rgba(255,255,255,1), rgba(255,255,255,.6) 30%, transparent 65%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  background:radial-gradient(180px circle at var(--x,50%) var(--y,50%), rgb(255, 255, 255), rgba(255,255,255,.6) 30%, transparent 65%);
+  -webkit-mask:linear-gradient(#dfd7d7 0 0) content-box,linear-gradient(#e3d4d4 0 0);
   -webkit-mask-composite:xor; mask-composite:exclude;
   opacity:0; pointer-events:none; transition:opacity .15s ease
 }
@@ -57,12 +59,12 @@ svg{width:26px;height:26px;fill:currentColor}
   position:fixed; top:20px; right:20px;
   width:44px; height:44px; border-radius:50%;
   display:grid; place-items:center; cursor:pointer;
-  background:rgba(255,255,255,.25);
+  background:rgba(237, 233, 233, 0.362);
   backdrop-filter:blur(10px);
   font-size:20px;
   transition:transform .4s ease, background .4s ease
 }
-body.light .theme-toggle{background:rgba(0,0,0,.15)}
+body.light .theme-toggle{background:rgba(166, 17, 17, 0)}
 .theme-toggle.spin{transform:rotate(360deg)}
 </style>
 </head>
